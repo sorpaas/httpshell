@@ -84,7 +84,7 @@ while true
       if params[1]
         @env.cd(params[1])
       end
-      exec_com.call(@env)
+      @current_output = exec_com.call(@env)
       next
     end
     
@@ -92,6 +92,7 @@ while true
     puts 'error: do not know how to deal with it. '
   end
   
+  if
   puts @current_output
   puts ""
 end
