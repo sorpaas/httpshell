@@ -20,19 +20,19 @@ end
   end,
   
   get: lambda do |env|
-    http_request(Net::HTTP::Get, env.working_path)
+    http_request(Net::HTTP::Get, env.working_path).body
   end,
   
   post: lambda do |env|
-    http_request(Net::HTTP::Post, env.working_path)
+    http_request(Net::HTTP::Post, env.working_path).body
   end,
   
   put: lambda do |env|
-    http_request(Net::HTTP::Put, env.working_path)
+    http_request(Net::HTTP::Put, env.working_path).body
   end,
   
   delete: lambda do |env|
-    http_request(Net::HTTP::Delete, env.working_path)
+    http_request(Net::HTTP::Delete, env.working_path).body
   end,
   
   debug: lambda do |env|
@@ -64,8 +64,12 @@ while true
   sub_commands.each do |sub_command|
     #first to see whether it is a variable
     if sub_command.start_with? '$'
-      @env.variables[sub_command.sub(/^\$/, '')] = current_output
-      current_output = current_output
+      if current_output
+        @env.variables[sub_command.sub(/^\$/, '')] = current_output
+        current_output = current_output
+      else
+        current_output = @env.variables[sub_command.sub(/^\$/, '')]
+      end
       next
     end
     
@@ -92,8 +96,8 @@ while true
     puts 'error: do not know how to deal with it. '
   end
   
-  if not (current_output == nil or current_output.strip == '')
-    puts current_output.strip
+  if not (current_output == nil or current_output.to_s.strip == '')
+    puts current_output.to_s.strip
     puts ""
   end
 end

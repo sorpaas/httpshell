@@ -3,7 +3,7 @@ require 'httpshell/version'
 module HTTPShell
   class Environment
     attr_reader :variables
-    attr_reader :working_path
+    attr_accessor :working_path
     
     def initialize
       @variables = {}
