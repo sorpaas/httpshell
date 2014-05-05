@@ -1,24 +1,31 @@
-# Httpshell
+# HTTPShell
 
-TODO: Write a gem description
+HTTPShell is a simple console program that makes curl commands shorter and easier. It makes you able to directly run get/post/put/delete request in a line and with relative path.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Run this line in your console.
 
-    gem 'httpshell'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install httpshell
+    gem install httpshell
 
 ## Usage
 
-TODO: Write usage instructions here
+To change the working path, do:
+
+    http:/// > cd example
+
+Run http request:
+
+    http://example.com/ > post sessions
+    # => {"uuid":"f64ff663-0df2-4954-89ee-f78e38ac284f","pairs":[]}
+
+Using pipes to write variables:
+
+    http://example.com/ > post sessions | $session_token
+    http://example.com/session > debug
+    # => session_token:	{"uuid":"f64ff663-0df2-4954-89ee-f78e38ac284f","pairs":[]}
+
+Have fun playing!
 
 ## Contributing
 
