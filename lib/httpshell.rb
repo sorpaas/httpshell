@@ -39,7 +39,9 @@ module HTTPShell
     end
     
     def cd_absolutely(path)
-      path = path.sub /\/$/, ''
+      if not /^(http|https|file):\/\/$/i =~ path
+        path = path.sub /\/$/, ''
+      end
       
       @working_path = path
     end
