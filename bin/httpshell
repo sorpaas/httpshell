@@ -37,7 +37,7 @@ end
 }
 
 puts "#{@spec.name} #{@spec.version}"
-puts "By #{@spec.author} <#{@spec.email}>"
+puts "By #{@spec.author} <#{@spec.email[0]}>"
 puts ""
 
 while true
@@ -73,6 +73,7 @@ while true
       #if it is, then run it.
       @env.cd(params[1])
       exec_com.call(@env)
+      next
     end
     
     #then we don't know how to deal with it.
