@@ -60,12 +60,12 @@ while true
   
   sub_commands = command.split('|').map { |c| c.strip }
   
-  @current_output = nil
+  current_output = nil
   sub_commands.each do |sub_command|
     #first to see whether it is a variable
     if sub_command.start_with? '$'
-      @env.variables[sub_command.sub(/^\$/, '')] = @current_output
-      @current_output = @current_output
+      @env.variables[sub_command.sub(/^\$/, '')] = current_output
+      current_output = current_output
       next
     end
     
@@ -84,7 +84,7 @@ while true
       if params[1]
         @env.cd(params[1])
       end
-      @current_output = exec_com.call(@env)
+      current_output = exec_com.call(@env)
       next
     end
     
@@ -92,7 +92,8 @@ while true
     puts 'error: do not know how to deal with it. '
   end
   
-  if
-  puts @current_output
-  puts ""
+  if not (current_output == nil or current_output.strip == '')
+    puts current_output.strip
+    puts ""
+  end
 end
