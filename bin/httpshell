@@ -81,7 +81,9 @@ while true
     exec_com = @commands[:"#{params[0]}"]
     if params.length <= 2 and exec_com != nil
       #if it is, then run it.
-      @env.cd(params[1])
+      if params[1]
+        @env.cd(params[1])
+      end
       exec_com.call(@env)
       next
     end
