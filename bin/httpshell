@@ -91,4 +91,7 @@ while true
     #then we don't know how to deal with it.
     puts 'error: do not know how to deal with it. '
   end
+  
+  puts @current_output
+  puts ""
 end
